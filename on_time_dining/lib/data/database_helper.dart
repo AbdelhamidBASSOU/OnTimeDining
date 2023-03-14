@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final _databaseName = 'dining_said.db';
+  static final _databaseName = 'saidGlovoDB.db';
   static final _databaseVersion = 1;
 
   static final tableUser = 'user';
@@ -20,9 +20,9 @@ class DatabaseHelper {
   static final tableOrder = 'orders';
   static final columnOrderId = 'id';
   static final columnOrderDate = 'date';
-  static final columnOrderTotalPrice = 'total_price';
-  static final columnOrderUserId = 'user_id';
-  static final columnOrderRestaurantId = 'restaurant_id';
+  static final columnOrderTotalPrice = 'totalPrice';
+ // static final columnOrderUserId = 'user_id';
+  //static final columnOrderRestaurantId = 'restaurant_id';
 
   static final tableOrderItem = 'order_item';
   static final columnOrderItemId = 'id';
@@ -36,6 +36,7 @@ class DatabaseHelper {
   static final columnPlatName = 'name';
   static final columnPlatDescription = 'description';
   static final columnPlatPrice = 'price';
+  static final columnPlatImage = 'image';
   static final columnPlatRestaurantId = 'restaurant_id';
 
   // make this a singleton class
@@ -82,11 +83,7 @@ class DatabaseHelper {
       CREATE TABLE $tableOrder (
         $columnOrderId INTEGER PRIMARY KEY,
         $columnOrderDate TEXT NOT NULL,
-        $columnOrderTotalPrice REAL NOT NULL,
-        $columnOrderUserId INTEGER NOT NULL,
-        $columnOrderRestaurantId INTEGER NOT NULL,
-        FOREIGN KEY ($columnOrderUserId) REFERENCES $tableUser ($columnUserId),
-        FOREIGN KEY ($columnOrderRestaurantId) REFERENCES $tableRestaurant ($columnRestaurantId)
+        $columnOrderTotalPrice REAL NOT NULL
       )
     ''');
 
@@ -108,6 +105,7 @@ class DatabaseHelper {
         $columnPlatName TEXT NOT NULL,
         $columnPlatDescription TEXT NOT NULL,
         $columnPlatPrice REAL NOT NULL,
+        $columnPlatImage TEXT NOT NULL,
         $columnPlatRestaurantId INTEGER NOT NULL,
         FOREIGN KEY ($columnPlatRestaurantId) REFERENCES $tableRestaurant ($columnRestaurantId)
       )
