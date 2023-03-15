@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final _databaseName = 'saidGlovoDB.db';
+  static final _databaseName = 'theBeforeLastDb.db';
   static final _databaseVersion = 1;
 
   static final tableUser = 'user';
@@ -28,8 +28,8 @@ class DatabaseHelper {
   static final columnOrderItemId = 'id';
   static final columnOrderItemQuantity = 'quantity';
   static final columnOrderItemPrice = 'price';
-  static final columnOrderItemOrderId = 'order_id';
-  static final columnOrderItemPlatId = 'plat_id';
+  static final columnOrderItemOrderId = 'orderId';
+  static final columnOrderItemPlatId = 'platId';
 
   static final tablePlat = 'plat';
   static final columnPlatId = 'id';
@@ -81,7 +81,7 @@ class DatabaseHelper {
 
     await db.execute('''
       CREATE TABLE $tableOrder (
-        $columnOrderId INTEGER PRIMARY KEY,
+        $columnOrderId INTEGER PRIMARY KEY AUTOINCREMENT,
         $columnOrderDate TEXT NOT NULL,
         $columnOrderTotalPrice REAL NOT NULL
       )
@@ -89,7 +89,7 @@ class DatabaseHelper {
 
     await db.execute('''
       CREATE TABLE $tableOrderItem (
-        $columnOrderItemId INTEGER PRIMARY KEY,
+        $columnOrderItemId INTEGER PRIMARY KEY AUTOINCREMENT,
         $columnOrderItemQuantity INTEGER NOT NULL,
         $columnOrderItemPrice REAL NOT NULL,
         $columnOrderItemOrderId INTEGER NOT NULL,
@@ -101,7 +101,7 @@ class DatabaseHelper {
 
     await db.execute('''
       CREATE TABLE $tablePlat (
-        $columnPlatId INTEGER PRIMARY KEY,
+        $columnPlatId INTEGER PRIMARY KEY AUTOINCREMENT,
         $columnPlatName TEXT NOT NULL,
         $columnPlatDescription TEXT NOT NULL,
         $columnPlatPrice REAL NOT NULL,

@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:on_time_dining/dao/order_dao.dart';
 import 'package:on_time_dining/models/order_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../dao/order_item_dao.dart';
 import '../models/order.dart';
 
@@ -41,28 +39,24 @@ class _CartListPageState extends State<CartListPage> {
   Future<void> _addToOrder(List<Map<String, dynamic>> items) async {
     final prefs = await SharedPreferences.getInstance();
     final orderJson = prefs.getStringList('orders') ?? [];
-    final order = orderJson.map((item) => Order.fromMap(jsonDecode(item))).toList();
+    final order =
+    orderJson.map((item) => Order.fromMap(jsonDecode(item))).toList();
 
     final totalPrice = getTotalPrice();
-    final lastOrderId = await OrderDao.getLastOrderId();
-    final newOrderId = lastOrderId != null ? lastOrderId + 1 : 1;
 
-    final newOrder = Order(
-      id: order.length + 1,
+    final Order newOrder = Order(
       date: DateTime.now(),
       totalPrice: totalPrice,
     );
 
-
     final orderId = await OrderDao.insertOrder(newOrder.toMap());
-    order.add(newOrder);
 
     for (var item in items) {
       final orderItem = OrderDetail(
-        id: item['id'],
-        orderId: orderId,
+        orderId: orderId, // Use the orderId here instead of newOrderId
         quantity: item['quantity'],
         price: item['price'],
+        platId: int.parse(item['id']),
       );
       await orderItemDao.insertOrderItem(orderItem.toMap());
     }
@@ -75,6 +69,8 @@ class _CartListPageState extends State<CartListPage> {
       _cartItems = [];
     });
   }
+
+
 
 
   void _removeFromCart(int index) async {

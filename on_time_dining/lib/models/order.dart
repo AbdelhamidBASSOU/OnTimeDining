@@ -1,14 +1,14 @@
 class Order {
-  late final int?  id;
+    int?  id;
   final DateTime date;
   final double totalPrice;
 
 
-  Order({required this.id, required this.date, required this.totalPrice});
+  Order({ this.id, required this.date, required this.totalPrice});
 
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
-      id: map['id'] ?? 0,
+      id: map['id'] != null ? map['id'] as int : null,
       date: map['date'] != null ? DateTime.parse(map['date'] as String) : DateTime.now(),
       totalPrice: (map['totalPrice'] as double?) ?? 0.0,
     );

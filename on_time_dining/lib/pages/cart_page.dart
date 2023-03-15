@@ -24,7 +24,7 @@ class _CartPageState extends State<CartPage> {
       cartItems = [];
     }
     String platJson =
-        '{"name": "${widget.plat.name}", "price": ${widget.plat.price}, "image": "${widget.plat.image}", "quantity": $_quantity}';
+        '{"id": "${widget.plat.id}","name": "${widget.plat.name}", "price": ${widget.plat.price}, "image": "${widget.plat.image}", "quantity": $_quantity}';
     cartItems.add(platJson);
     await prefs.setStringList('cartItems', cartItems);
     print('card to save' + cartItems.toString());

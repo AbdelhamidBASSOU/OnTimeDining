@@ -8,7 +8,7 @@ class OrderItemDao {
   }
 
   Future<int> insertOrderItem(Map<String, dynamic> orderItem) async {
-    return await DatabaseHelper.insert('OrderItem', orderItem);
+    return await DatabaseHelper.insert(DatabaseHelper.tableOrderItem, orderItem);
   }
 
   Future<int> updateOrderItem(Map<String, dynamic> orderItem) async {

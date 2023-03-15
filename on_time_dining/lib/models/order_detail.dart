@@ -1,10 +1,11 @@
 class OrderDetail {
-  final int id;
+  final int? id;
   final int quantity;
   final double price;
-  final int orderId;
+  final int? orderId;
+  final int? platId;
 
-  OrderDetail({required this.id, required this.quantity, required this.price, required this.orderId});
+  OrderDetail({this.id, required this.quantity, required this.price, required this.orderId, required this.platId});
 
   factory OrderDetail.fromMap(Map<String, dynamic> map) {
     return OrderDetail(
@@ -12,6 +13,7 @@ class OrderDetail {
       quantity: map['quantity'],
       price: map['price'],
       orderId: map['orderId'],
+      platId: map['platId'],
     );
   }
 
@@ -20,6 +22,8 @@ class OrderDetail {
       'id': id,
       'quantity': quantity,
       'price': price,
+      'orderId': orderId,
+      'platId': platId,
     };
   }
 }
