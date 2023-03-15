@@ -3,6 +3,7 @@ import '../dao/restaurant_dao.dart';
 import '../data/database_helper.dart';
 import '../models/Restaurent.dart';
 import 'menu_page.dart';
+import 'order_history_page.dart';
 
 class RestaurantListPage extends StatefulWidget {
   @override
@@ -93,6 +94,17 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => OrderHistoryPage()),
+          );
+        },
+        tooltip: 'History',
+        child: Icon(Icons.history),
+      ),
     );
   }
+
 }

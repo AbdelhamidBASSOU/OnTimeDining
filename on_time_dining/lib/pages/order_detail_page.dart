@@ -5,6 +5,7 @@ import 'package:on_time_dining/models/order_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../dao/order_item_dao.dart';
 import '../models/order.dart';
+import 'order_history_page.dart';
 
 class CartListPage extends StatefulWidget {
   @override
@@ -68,6 +69,12 @@ class _CartListPageState extends State<CartListPage> {
     setState(() {
       _cartItems = [];
     });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OrderHistoryPage(),
+      ),
+    );
   }
 
 

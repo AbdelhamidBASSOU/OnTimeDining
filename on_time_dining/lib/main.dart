@@ -50,7 +50,7 @@ class MyApp extends StatefulWidget {
       return MaterialApp(
         title: 'Restaurant App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.orange,
         ),
         initialRoute: '/',
         routes: {

@@ -2,7 +2,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final _databaseName = 'theBeforeLastDb.db';
+  static final _databaseName = 'LastDb.db';
   static final _databaseVersion = 1;
 
   static final tableUser = 'user';
